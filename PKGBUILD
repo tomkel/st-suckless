@@ -6,7 +6,7 @@
 
 pkgname=st-fs
 _pkgname=st
-pkgver=0.7.16.ge448324
+pkgver=0.7.17.gc63a87c
 pkgrel=1
 pkgdesc='Simple virtual terminal emulator for X'
 url='http://st.suckless.org/'
@@ -21,7 +21,8 @@ source=('git://git.suckless.org/st'
         '1-scrollback-0.7.diff'
         '2-personal.diff'
         '3-copypaste.diff'
-        '4-color-base16-tomorrow-night.diff'
+	'4-color-base16-mocha-dark.diff'
+        #'4-color-base16-tomorrow-night.diff'
         #'4-color-base16-grayscale-dark.diff'
         #'4-color-gruvbox.diff'
         #'4-color-jasonwryan-dark.diff'
@@ -29,20 +30,20 @@ source=('git://git.suckless.org/st'
         '6-scrollback-mouse-altscreen.diff'
         '7-clipboard.diff'
         '8-vertcentre.diff'
-        '9-delkey.diff'
+        #'9-delkey.diff'
         '10-externalpipe.diff'
         '11-extpipe.diff'
         )
 sha1sums=('SKIP'
           'c4e82b491bba7a78777647ff16624e3ffb570937'
-          'f5f57d4ed81b793e81f4703a55953d5200276366'
+          'caf88a1e47bae4a078b21c10351f5ba946be956f'
           '463b05d46c5e1206c119087e7b2a937e8d2f2992'
-          '8b4b6398cb22d7d8b2c43c797f710cb7f6c3a9ca'
+          'ebba756a0d8596efb29ef4f0aa7189434bc9c947'
           '88b85b0f3dff3606c5c791ab5752fdfb36727c7c'
           'a891faa40d51641dc3f54d472cdcfa8fa83e6fc7'
           'c916dc2410a0e43a06ace5c23a199ece273409c8'
           'dcde03cab595bdacc51011bcfc5d520611b9a03f'
-          '7521f301fe525aa6eb2c2579d5212260d94bbe52'
+          #'7521f301fe525aa6eb2c2579d5212260d94bbe52'
           'fa02e1690f53884fac3a0628b57bb6de0a607564'
           '70eda702ad2d346bb1e3c80ad07ac28d586926da')
 
@@ -76,6 +77,7 @@ prepare() {
 			cp "$srcdir/$file" .
 		elif [[ "$file" == *.diff || "$file" == *.patch ]]; then
 			# add all patches present in source array
+            echo "### applying patch $(basename ${file})"
 			patch -Np1 <"$srcdir/$(basename ${file})"
 		fi
 	done
